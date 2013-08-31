@@ -1,0 +1,30 @@
+[alias]
+  verify = !sh -c 'echo "gitconfigs is all set!"'
+  # Short cuts
+  st = status
+  ci = commit
+  br = branch
+  co = checkout
+  df = diff
+  dc = diff --cached
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  who = shortlog -s --
+  undo=reset --hard
+
+  # List aliases
+  aliases = !git config --get-regexp 'alias.*' | colrm 1 6 | sed 's/[ ]/ = /'
+
+  # See who you are currently committing as, when you carry mulitiple idenities
+  whoami = !git config --get-regexp 'user.*' | sed 's/user.//' | sed 's/[ ]/ = /'
+
+  # See what commits came in the last fetch
+  lc = log ORIG_HEAD.. --stat --no-merge 
+
+  # See what new commits came in the last fetch or pull
+  lcc = !sh -c 'git log $1@{1}..$1@{0} "$@"'
+
+  # Prune stale branches from all remotes
+  clean = !git remote | xargs -n 1 git remote prune
+
+  whois = "!sh -c 'git log -i -1 --pretty=\"format:%an <%ae>\n\" --author=\"$1\"' -"
+  whatis = show -s --pretty='tformat:%h (%s, %ad)' --date=short

@@ -1,0 +1,4 @@
+[include]
+    path = ./identity
+    path = ./aliases
+    path = ./pull_push
